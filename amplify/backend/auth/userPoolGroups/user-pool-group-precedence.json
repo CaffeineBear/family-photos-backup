@@ -1,0 +1,14 @@
+[
+  {
+    "groupName": "YongFamilyAdmin",
+    "precedence": 1
+  },
+  {
+    "groupName": "YongFamilyMembers",
+    "precedence": 2
+  },
+  {
+    "groupName": "Guests",
+    "precedence": 3
+  }
+]

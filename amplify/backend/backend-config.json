@@ -1,0 +1,65 @@
+{
+  "auth": {
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "familyphotosbackup5beed2165beed216",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
+    },
+    "familyphotosbackup5beed2165beed216": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "function": {
+    "AdminQueries186bcd26": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "familyphotosbackup5beed2165beed216",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
+    }
+  },
+  "api": {
+    "AdminQueries": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "familyphotosbackup5beed2165beed216",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "AdminQueries186bcd26",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ]
+    }
+  }
+}
